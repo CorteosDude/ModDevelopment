@@ -1,0 +1,42 @@
+﻿@using JavelinView3.Base
+@model ModAuthorizationException.PluginLogics.BLModels.ClientWithAuthorizationException
+
+<div class="row">
+    <div class="col">
+        <div class="m-portlet mb-4">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text mt-4">
+                            <i class="flaticon-statistics"></i> <span>
+                                @Html.ToLocal("Исключение из авторизации")
+                                <small class="pl-0 pt-2 pb-2">@Html.ToLocal("Если заказ делает авторизованное (доверенное) лицо клиента, то эти заказы не должны требовать дополнительной авторизации, не зависимо от всех прочих условий, включая тип/статус пассажира - не важно, для кого он делает этот заказ")</small>
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <div class="form-group row mb-0">
+                    <div class="col input-icon control-input-icon right">
+                        <!-- Rounded switch -->
+                        <label class="switch mb-0">
+                            <input name="Instance.IsBlocked"
+                                   value="true"
+                                   @(Model.ExtensionData.AuthorizationIsNotRequired ? "checked" : "" )
+                                   type="checkbox"
+                                   onchange="(function () { $.get('/ModAuthorizationExceptionClientEdtor/ToggleAuthorizationIsNotRequired', {id: @(Model.id)}); })() ">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="col-form-label ml-3" style="vertical-align: top;font-size: 20px;margin-top: -6px;margin-left: 5px;">@Html.ToLocal("без авторизации")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
